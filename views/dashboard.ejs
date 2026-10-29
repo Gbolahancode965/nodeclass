@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to your dashboard <%= username %></h1>
+
+     <form class="w-50 px-3 py-3 mx-auto shadow" action="/user/addtodo" method="post">
+        <h2 class="text-dark mb-3 text-center">Todo List</h2>
+        <input name="title" class="form-control mb-3" type="text" placeholder="title">
+        <input name="description" class="form-control mb-3" type="text" placeholder="description">
+        <button class="btn btn-dark mb-3">Addtodo</button>
+    </form>
+
+
+    <% alltodo.forEach(element => { %>
+        <p><%= element.title %></p>
+        <p><%= element.description %></p>
+
+      <form action="/todo/update/<%= element._id %>" method="post">
+
+          <input onchange="this.form.submit()" type="checkbox" <%= element.completed ? "checked" 
+        : "" %> >
+        
+      </form>
+
+    
+
+          <form action="/todo/delete/<%= element._id %>" method="post">
+           <button>delete</button>
+        </form>
+    <% }) %>
+
+</body>
+</html>
